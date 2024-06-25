@@ -1,11 +1,5 @@
 export type Countries = {
-  altSpellings: {
-    [key: string]: {
-      0: string;
-      1: string;
-      2: string;
-    };
-  };
+  altSpellings: string[];
   area: number;
   capital: string;
   capitalInfo: {
@@ -13,35 +7,57 @@ export type Countries = {
       latlng: number;
     };
   };
-  car: string;
-  signs: string;
+  car: {
+    signs: string[];
+    side: string;
+  };
   cca2: string;
   cca3: string;
   ccn3: string;
   coatOfArms: string | undefined;
   continents: string;
-  currencies: string;
-  XPF: string;
-  demonyms: string;
-  eng: string;
+  currencies: {
+    [key: string]: {
+      name: string;
+      symbol: string;
+    };
+  };
+  demonyms: {
+    [key: string]: {
+      f: string;
+      m: string;
+    };
+  };
   flag: string;
   flags: { png: string; svg: string };
-  idd: string;
-  suffixes: string;
+  idd: {
+    [key: string]: {
+      root: string;
+    };
+  };
   independent: boolean;
   landlocked: boolean;
-  languages: string;
+  languages: {
+    [key: string]: {
+      fra: string;
+    };
+  };
   latlng: number;
-  maps: string;
+  maps: { goolgleMaps: string; openStreeMaps: string };
   name: { common: string; official: string };
   population: number;
-  postalCode: string;
+  postalCode: { format: string; regex: string };
   region: string;
   startOfWeek: string;
   status: string;
   subregion: string;
   timezones: string;
   tld: string;
-  translations: string;
+  translations: {
+    [key: string]: {
+      official: string;
+      common: string;
+    };
+  };
   unMember: boolean;
 };

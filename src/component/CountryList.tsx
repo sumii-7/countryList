@@ -13,6 +13,17 @@ const CountryList = () => {
     });
   }, []);
 
+  const selectedHandle = (value: Countries) => {
+    setSelectedCountries((prev) => {
+      const isValueSelected = prev.includes(value);
+      if (isValueSelected) {
+        return prev.filter((item) => item !== value);
+      } else {
+        return [...prev, value];
+      }
+    });
+  };
+
   return (
     <>
       <StWrap>
@@ -21,7 +32,11 @@ const CountryList = () => {
         <StCountriesTitle>Countries</StCountriesTitle>
         <StCountryBox>
           {countryList?.map((value) => {
-            return <CountryCard value={value} />;
+            return (
+              <div onClick={() => selectedHandle(value)}>
+                <CountryCard value={value} />
+              </div>
+            );
           })}
         </StCountryBox>
       </StWrap>
@@ -31,7 +46,6 @@ const CountryList = () => {
 const StWrap = styled.div`
   width: 90%;
   margin: 0 auto;
-  border: 1px solid red;
 `;
 
 const StFavoriteTitle = styled.h2`
