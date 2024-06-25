@@ -13,27 +13,34 @@ const CountryList = () => {
     });
   }, []);
 
-  const selectedHandle = (value: Countries) => {
-    setSelectedCountries((prev) => {
-      const isValueSelected = prev.includes(value);
-      if (isValueSelected) {
-        return prev.filter((item) => item !== value);
-      } else {
-        return [...prev, value];
-      }
-    });
+  const selectedCountryHandler = (value: Countries) => {
+    setSelectedCountries((prev) => [...prev, value]);
+    setCountryList(countryList.filter((item) => item !== value));
+  };
+
+  const deleteCountryHandler = (value: Countries) => {
+    setSelectedCountries(selectedCountries.filter((item) => item !== value));
+    setCountryList((prev) => [...prev, value]);
   };
 
   return (
     <>
       <StWrap>
         <StFavoriteTitle>Favorite Countries</StFavoriteTitle>
-
+        <StCountryBox>
+          {selectedCountries.map((value) => {
+            return (
+              <div onClick={() => deleteCountryHandler(value)}>
+                <CountryCard value={value} />
+              </div>
+            );
+          })}
+        </StCountryBox>
         <StCountriesTitle>Countries</StCountriesTitle>
         <StCountryBox>
           {countryList?.map((value) => {
             return (
-              <div onClick={() => selectedHandle(value)}>
+              <div onClick={() => selectedCountryHandler(value)}>
                 <CountryCard value={value} />
               </div>
             );
@@ -51,12 +58,14 @@ const StWrap = styled.div`
 const StFavoriteTitle = styled.h2`
   font-size: 1.5rem;
   text-align: center;
+  margin-bottom: 20px;
 `;
 
 const StCountriesTitle = styled.h1`
   font-size: 1.6rem;
   font-weight: bold;
   text-align: center;
+  margin-bottom: 20px;
 `;
 
 const StCountryBox = styled.div`

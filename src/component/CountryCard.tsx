@@ -7,7 +7,7 @@ const CountryCard = ({ value }: { value: Countries }) => {
         <img src={value.flags.png} alt="" />
         <div>
           <p className="countryName">{value.name.common}</p>
-          <p className="countryCapital">{value.capital}</p>
+          <p>{value.capital}</p>
         </div>
       </div>
     </>
