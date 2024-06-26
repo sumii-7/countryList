@@ -80,13 +80,12 @@ const StCountriesTitle = styled.h1`
 `;
 
 const StCountryBox = styled.div`
-  display: grid;
+  display: flex;
   justify-content: center;
-  align-items: center;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  flex-flow: wrap;
 
   .box {
-    width: 80%;
+    width: 200px;
     height: 150px;
     border-radius: 10px;
     box-shadow: 0px 3px 5px 3px rgba(0, 0, 0, 0.1);
