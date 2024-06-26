@@ -30,8 +30,11 @@ const CountryList = () => {
         <StCountryBox>
           {selectedCountries.map((value) => {
             return (
-              <div onClick={() => deleteCountryHandler(value)}>
-                <CountryCard value={value} />
+              <div key={value.name.common}>
+                <CountryCard
+                  countryHandler={deleteCountryHandler}
+                  value={value}
+                />
               </div>
             );
           })}
@@ -40,8 +43,11 @@ const CountryList = () => {
         <StCountryBox>
           {countryList?.map((value) => {
             return (
-              <div onClick={() => selectedCountryHandler(value)}>
-                <CountryCard value={value} />
+              <div key={value.name.common}>
+                <CountryCard
+                  countryHandler={selectedCountryHandler}
+                  value={value}
+                />
               </div>
             );
           })}
@@ -53,6 +59,11 @@ const CountryList = () => {
 const StWrap = styled.div`
   width: 90%;
   margin: 0 auto;
+  -ms-user-select: none;
+  -moz-user-select: -moz-none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  user-select: none;
 `;
 
 const StFavoriteTitle = styled.h2`
@@ -86,6 +97,7 @@ const StCountryBox = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 
     & > div {
       width: 100%;
